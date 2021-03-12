@@ -1,0 +1,271 @@
+%作者：王美庭
+%Email：wangmeiting92@gmail.com
+
+%使用xelatex或pdflatex编译
+
+%=============导言区===============
+
+\documentclass[compress,10pt,dvipsnames,notheorems]{beamer} %compress表示紧缩化显示slide；beamber会自动调用xcolor宏包，dvipsnames选项表示可使用xcolor宏包对应选项的颜色名；beamer会自动加载amsthm和amsmath宏包，notheorems表示关闭beamer定义的定理类环境。
+\input{preface-for-beamer4.tex} %插入导言区设置
+
+
+%标题页设置
+\title[short title]{This is a long long long long long title}
+\subtitle[short subtitle]{This is a subtitle}
+\author[Meiting Wang]{Meiting Wang}
+\institute[IESR-JNU]{
+	\small Institute for Economic and Social Research \\ Jinan University
+}
+
+%有多位作者时：
+%\author[Arthur, Doe] % (optional, for multiple authors)
+%{A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+%
+%\institute[VFU] % (optional)
+%{
+%	\inst{1}%
+%	Faculty of Physics\\
+%	Very Famous University
+%	\and
+%	\inst{2}%
+%	Faculty of Chemistry\\
+%	Very Famous University
+%}
+
+\date[2021/3/6]{\today}
+
+
+
+
+%=================正文区=================
+\begin{document}
+
+\begin{frame}[plain,noframenumbering] %标题页帧
+	\titlepage
+\end{frame}
+
+{
+%\setbeamertemplate{footline}{} %临时置空footline
+\begin{frame}[noframenumbering]{Outline} %大纲，[pausesections]表示动态一步一步显示，[hideallsubsections]表示隐藏所有的subsection，[hideothersubsections]表示隐藏非当前节下的subsection，[currentsection]表示只正常显示current section，而虚化其他的section
+	\tableofcontents[hideallsubsections]
+\end{frame}
+}
+
+% 在每一section的开头插入以下内容
+\AtBeginSection[]{ % 不对section*起作用
+	{\setbeamertemplate{footline}{} %临时置空footline
+	\begin{frame}[noframenumbering]{Current section}
+		\tableofcontents[currentsection,hideothersubsections]
+	\end{frame}}
+}
+
+\section{Theorem Environment}%---------------------
+
+\begin{frame}{Theorem environment}
+	\begin{dfn}
+		This is a dfn env.
+	\end{dfn}\vspace{\baselineskip}
+
+	\begin{dfn}[This is a definition]\label{dfn:xxx}
+		This is a dfn env.
+	\end{dfn}\vspace{\baselineskip}
+
+	\begin{lemma}
+		This is a lemma env.
+	\end{lemma}\vspace{\baselineskip}
+
+	\begin{lemma}[This is a lemma]
+		This is a lemma env.
+	\end{lemma}\vspace{\baselineskip}
+
+	\begin{thm}
+		This is a sentence.
+	\end{thm}
+\end{frame}
+
+\begin{frame}{Theorem environment (Continue)}
+	\begin{thm}[This is a theorem]\label{thm:yyy}
+		This is a sentence.
+	\end{thm}\vspace{\baselineskip}
+
+	\begin{coro}
+		This is a coro env.
+	\end{coro}\vspace{\baselineskip}
+
+	\begin{coro}[This is a coro]
+		This is a coro env.
+	\end{coro}\vspace{\baselineskip}
+
+	\begin{proof}
+		This is a proof env.
+	\end{proof}\vspace{\baselineskip}
+
+	\begin{exam}
+		This is a exam env.
+	\end{exam}
+\end{frame}
+
+\begin{frame}{The Theorem Environment (Continue)}
+	\begin{exam}[This is a exam]\label{exam:zzz}
+		This is a exam env.
+	\end{exam}\vspace{\baselineskip}
+
+	\begin{solu}
+		This is a solution env.
+	\end{solu}\vspace{\baselineskip}
+
+	\begin{alert}
+		This is a alert env.
+	\end{alert}
+\end{frame}
+
+
+\section{Chart Environment}%------------------------
+
+\subsection{Table}
+
+\begin{frame}{Table}
+	\begin{table}[htbp]
+		\centering
+		\caption{Descriptive statistics 1}
+		\begin{tabular}{l*{5}{>{$}c<{$}}}
+			\toprule
+			&\text{count}&\text{mean}&\text{sd}&\text{min}&\text{max}\\
+			\midrule
+			price       &          74&     6165.26&     2949.50&        3291&       15906\\
+			mpg         &          74&       21.30&        5.79&          12&          41\\
+			weight      &          74&     3019.46&      777.19&        1760&        4840\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[htbp]
+		\centering
+		\caption{Descriptive statistics 2}\label{tab:sumyy}
+		\begin{tabular}{l>{$}c<{$}*{2}{D{.}{.}{-1}}*{2}{>{$}c<{$}}}
+			\toprule
+			&\text{count}&\multicolumn{1}{c}{mean}&\multicolumn{1}{c}{sd}&\text{min}&\text{max}\\
+			\midrule
+			price       &          74&     6165.26&     2949.50&        3291&       15906\\
+			mpg         &          74&       21.30&        5.79&          12&          41\\
+			weight      &          74&     3019.46&      777.19&        1760&        4840\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\subsection{Figure}
+
+\begin{frame}{Figure}
+	\begin{columns}
+		\column[c]{0.49\textwidth}
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=\textwidth]{1.jpg}
+			\caption{This is a figure 1}
+		\end{figure}
+
+		\column[c]{0.49\textwidth}
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=\textwidth]{2.jpg}
+			\caption{This is a figure 2}\label{fig:beauyy}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
+
+
+\section{List Environment}%------------------------
+\begin{frame}{List Environment} %可选项[c]表示将内容居中放置(也是默认的形式)
+	\begin{columns}
+		\column[c]{0.49\textwidth}
+		\begin{itemize}
+			\item The first item
+			\begin{itemize}
+				\item subitem 1
+				\item subitem 2
+			\end{itemize}
+			\item The second item
+			\item The third item
+			\item The fourth item
+		\end{itemize}
+
+		\column[c]{0.49\textwidth}
+		\begin{enumerate}
+			\item The first item
+			\begin{itemize}
+				\item subitem 1
+				\item subitem 2
+			\end{itemize}
+			\item The second item
+			\item The third item
+			\item The fourth item
+		\end{enumerate}
+	\end{columns}\vspace{2em}
+
+	\begin{description}
+		\item[First Item] Description of first item
+		\item[Second Item] Description of second item
+		\item[Third Item] Description of third item
+	\end{description}
+\end{frame}
+
+\section{Mathematical Formula}%------------------------
+\begin{frame}{Mathematical Formula}
+	This is a one-row, unnumbered formula:
+	\[ a^2 + b^2 = c^2 \]
+
+	This is a one-line, numbered formula:
+	\begin{equation}
+		a^2 + b^2 = c^2
+	\end{equation}
+
+	There are multi-line, numbered formulas:
+	\begin{gather}
+		x = y + z \\
+		y^2 = z + 6x \\
+		z^2 + 6 = y^3 + x
+	\end{gather}
+
+	There are numbered formulas aligned at the equal sign:
+	\begin{align}
+		x^2 + x + 3 &= 9 \label{eq:alignx} \\
+		x^3 + 9 &= x^2 + 5x \label{eq:aligny}
+	\end{align}
+\end{frame}
+
+\section{Cross Reference}
+
+\begin{frame}{Cross Reference}
+	The use of cross references is shown below:
+	\begin{itemize}
+		\item There is a definition shown in \ref{dfn:xxx}.
+		\item There is a theorem shown in \ref{thm:yyy}.
+		\item There is a example shown in \ref{exam:zzz}.
+		\item There is a formula shown in \eqref{eq:alignx}.
+		\item There is a table shown in Table \ref{tab:sumyy}.
+		\item There is a figure shown in Figure \ref{fig:beauyy}.
+		\item The hyperlinks are contained in cross references above.
+	\end{itemize}
+\end{frame}
+
+\section{Multi-column Environment}%------------------------
+
+\begin{frame}{Multi-column Environment}
+	\begin{columns}
+		\column[c]{0.49\textwidth} %[c]垂直居中对齐，[t]垂直顶部对齐，[b]垂直底部对齐
+		\lipsum[1][1-8]
+
+		\column[c]{0.49\textwidth}
+		\lipsum[3][1-3]
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}[plain,noframenumbering]
+\vspace{0.12\textheight}\centering\Huge\textcalligra{Thanks!}\hspace{0em}
+\end{frame}
+
+
+\end{document}
